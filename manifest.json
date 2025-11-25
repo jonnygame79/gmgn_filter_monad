@@ -1,0 +1,36 @@
+{
+    "manifest_version": 3,
+    "name": "GMGN Monad Filter Extension",
+    "version": "1.0",
+    "description": "Adds filtering capabilities to gmgn.ai with platform selection and range filters",
+    "permissions": [
+        "activeTab",
+        "storage"
+    ],
+    "host_permissions": [
+        "https://gmgn.ai/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://gmgn.ai/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "css": [
+                "styles.css"
+            ]
+        }
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "GMGN Filter"
+    },
+    "icons": {
+      "16": "gmgn-filter-bnb.png",
+      "32": "gmgn-filter-bnb.png",
+      "48": "gmgn-filter-bnb.png",
+      "128": "gmgn-filter-bnb.png"
+    }
+}
