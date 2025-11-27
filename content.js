@@ -575,7 +575,7 @@
 
                 let cursor = ""
                 while (1) {
-                    const activites = await fetch(`https://gmgn.ai/vas/api/v1/wallet_activity/monad?type=buy&type=sell&device_id=${device_id}&client_id=${client_id}&from_app=${from_app}&app_ver=${app_ver}&tz_name=${tz_name}&tz_offset=${tz_offset}&app_lang=${app_lang}&fp_did=${fp_did}&os=${os}&wallet=${wallet}&token=${tokenAddress}&limit=50&cursor=${cursor}`);
+                    const activites = await fetch(`https://gmgn.ai/vas/api/v1/wallet_activity/monad?type=buy&type=sell&device_id=${device_id}&client_id=${client_id}&from_app=${from_app}&app_ver=${app_ver}&tz_name=${tz_name}&tz_offset=${tz_offset}&app_lang=${app_lang}&fp_did=${fp_did}&os=${os}&wallet=${wallet.toLowerCase()}&token=${tokenAddress.toLowerCase()}&limit=50&cursor=${cursor}&worker=0`);
 
                     const activitesData = await activites.json();
 
@@ -608,7 +608,6 @@
                 } else if (lastTx.quote_token.name == "Aster") {
                     first_buy_amount = first_buy_amount / 1.3
                 }
-                console.log(tokenAddress,"First tx:", first_tx_time, first_buy_mc, first_buy_amount)
 
                 let token_amount_left = 0;
                 let first_buy_token_amount = 0
@@ -801,6 +800,8 @@ https://gmgn.ai/api/v1/token_mcap_candles/monad/${tokenAddress}?device_id=${devi
                 } else {
                     if (launchpad == 'bn_fourmeme') platform = "bn_fourmeme"
                 }
+
+                console.log("Token platform:", tokenAddress, platform, launchpad_project)
                 
                 tokenInfo[tokenAddress] = {
                     dev,
